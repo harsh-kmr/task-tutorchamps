@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+{{ user.username }}
+{% endblock title %}
+
+{% block content %}
+<div class="row mt-3 mb-3">
+<div class="col-sm-4 mr-2 border border-dark rounded mb-3">
+    <form method="post" enctype="multiform/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button class="w-100 btn btn-primary btn-md" type="submit">Submit</button>
+        </form>
+</div>
+<div class="col-sm-8">
+<table width= 100% style="border: 2px solid black;">
+<tr style="border: 2px solid black;">
+    <th>
+        file name
+    </th>
+    {% comment %} <th>
+        file size
+    </th> {% endcomment %}
+    <th>
+        file url
+    </th>
+    <th>
+        submission date and time(IST)
+    </th>
+</tr>
+{% for foo in posts %}    
+<tr style="border: 2px solid black;">
+<td>{{ foo.attach_file.name }}</td>
+{% comment %} <td>{{ foo.attach_file.size }}</td> {% endcomment %}
+<td> <a href = {{ foo.attach_file.url }} > view </a></td>
+<td>{{ foo.submission}}
+</td>
+</tr>
+    {% endfor %}
+</table>
+</div>
+
+</div>
+{% endblock content %}

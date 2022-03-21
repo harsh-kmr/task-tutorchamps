@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block content %}
+
+{% comment %}
+
+p.s. - I have used templates from previous projects
+
+{% endcomment %}
+
+
+<div class="cover-container d-flex w-100 h-100 p-3 bg-dark text-white">
+{% comment %} <main class="px-3 ">
+  <h1>Cover your page.</h1>
+  <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+  <p class="lead">
+    <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
+  </p>
+</main> {% endcomment %}
+{% if user.is_authenticated %}
+<div style="position: relative; padding-top:200px; padding-left:40px;">
+  <h1 style="text-align:center;">Go To Dashboard</h1>
+  <p  style="text-align:center;">
+    <a href="{% url 'dashboard' %}" class="btn btn-lg btn-secondary fw-bold border-white text-dark mr-3 bg-white">Dashboard</a>
+  </p>
+</div>
+{% else %}
+<div style="position: relative; padding-top:200px; padding-left:40px;">
+  <h1 style="text-align:center;">FOR Signup and Login </h1>
+  <p class="lead">use header or create a new account by clicking Signup/Login below </p>
+  <p  style="text-align:center;">
+    <a href="{% url 'signup' %}" class="btn btn-lg btn-secondary fw-bold border-white text-dark bg-white">signup</a>
+    <a href="{% url 'login' %}" class="btn btn-lg btn-secondary fw-bold border-white text-dark bg-white">login</a>
+  </p>
+</div>
+{% endif %}
+
+</div>
+{% endblock content %}
